@@ -43,10 +43,13 @@ class Main {
 							break;
 						case DecafLexer.HEXA:
 							type = " HEXALIT";
-						case DecafLexer.NUMBER: 
-							type = " NUMBER"
 							break;
-						
+						case DecafLexer.NUMBER: 
+							type = "INTLITERAL";
+							break;
+						case DecafLexer.STRING:
+							type = "STRINGLITERAL";
+							break;
 						
 		        			}
 		        			System.out.println (token.getLine() + type + " " + text);
