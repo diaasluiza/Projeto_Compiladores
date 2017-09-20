@@ -13,14 +13,30 @@ tokens
 {
   TK_class
 }
-
-
+VIRGULA: ',';
+PTVIRGULA: ';';
+LPARENTS: '(';
+RPARENTS: ')';
+LCOLCHETE: '[';
+RCOLCHETE: ']';
 LCURLY : '{';
 RCURLY : '}';
 IF: 'if';
+BOOLEAN: 'boolean';
+CALLOUT: 'callout';
+CLASS: 'class';
+ELSE: 'else';
+FALSE: 'false';
+INT: 'int';
+RETURN: 'return';
+TRUE: 'true';
+FOR: 'for';
+VOID: 'void';
+BREAK: 'break';
+CONTINUE: 'continue'; 
 NUMBER: (NUM)+;
 
-WS_ : (' ' | '\n' ) -> skip;
+WS_ : (' ' | '\n' | '\t' ) -> skip;
 
 SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
@@ -33,7 +49,7 @@ STRING : '"' (ESC|ID|NUM|' '|','|'?'|'.'|':'|'!'|'\\'|',' ~('"'))* '"';
 
 ID  :  ('a'..'z' | 'A'..'Z' | '_' |NUM)+;
 
-OP : ('-'|'+'|'*'|'<='|'<'|'!='|'&&');
+OP : ('-'|'+'|'*'|'<='|'<'|'!='|'&&'|'>='|'!='|'=='|'||'|'>'|'=');
 
 fragment
 ESC :  '\\' ('n'|'t'|'\''|'"');

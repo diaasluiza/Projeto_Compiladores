@@ -31,7 +31,66 @@ class Main {
 
 		        			switch (token.getType())
 		        			{
-		        			
+		        			case DecafLexer.VIRGULA:
+							type = " ";
+							break;
+		        			case DecafLexer.PTVIRGULA:
+							type = " ";
+							break;
+		        			case DecafLexer.LPARENTS:
+							type = " ";
+							break;
+		        			case DecafLexer.RPARENTS:
+							type = " ";
+							break;
+		        			case DecafLexer.LCOLCHETE:
+							type = " ";
+							break;
+		        			case DecafLexer.RCOLCHETE:
+							type = " ";
+							break;
+		        			case DecafLexer.LCURLY:
+							type = " ";
+							break;
+		        			case DecafLexer.RCURLY:
+							type = " ";
+							break;
+		        			case DecafLexer.BOOLEAN:
+							type = "BOOLEAN";
+							break;
+						case DecafLexer.CALLOUT:
+							type = "CALLOUT";
+							break;
+						case DecafLexer.CLASS:
+							type = "CLASS";
+							break;
+						case DecafLexer.ELSE:
+							type = "ELSE";
+							break;
+						case DecafLexer.FALSE:
+							type = "BOOLEANLITERAL";
+							break;
+						case DecafLexer.INT:
+							type = "INT";
+							break;
+						case DecafLexer.RETURN:
+							type = "RETURN";
+							break;
+						case DecafLexer.TRUE:
+							type = "BOOLEANLITERAL";
+							break;
+						case DecafLexer.VOID:
+							type = "VOID";
+							break;
+						case DecafLexer.FOR:
+							type = "FOR";
+							break;
+						case DecafLexer.BREAK:
+							type = "BREAK";
+							break;
+						case DecafLexer.CONTINUE:
+							type = "CONTINUE";
+							break;
 						case DecafLexer.IF:
 		        				type = " RESERVADA";
 		        				break;
@@ -50,7 +109,7 @@ class Main {
 						case DecafLexer.STRING:
 							type = "STRINGLITERAL";
 							break;
-						
+
 		        			}
 		        			System.out.println (token.getLine() + type + " " + text);
 		        		}
