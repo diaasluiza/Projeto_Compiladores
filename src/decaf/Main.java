@@ -67,15 +67,13 @@ class Main {
 						case DecafLexer.ELSE:
 							type = "ELSE";
 							break;
-						case DecafLexer.FALSE:
-							type = "BOOLEANLITERAL";
-							break;
 						case DecafLexer.INT:
 							type = "INT";
 							break;
 						case DecafLexer.RETURN:
 							type = "RETURN";
 							break;
+						case DecafLexer.FALSE:
 						case DecafLexer.TRUE:
 							type = "BOOLEANLITERAL";
 							break;
@@ -109,6 +107,8 @@ class Main {
 						case DecafLexer.STRING:
 							type = "STRINGLITERAL";
 							break;
+						case DecafLexer.HEX_CEPTION:
+							throw new Exception("erritcho da lulu");
 
 		        			}
 		        			System.out.println (token.getLine() + type + " " + text);
