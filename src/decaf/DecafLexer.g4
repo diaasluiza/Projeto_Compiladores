@@ -36,6 +36,10 @@ BREAK: 'break';
 CONTINUE: 'continue'; 
 NUMBER: (NUM)+;
 
+TK_CLASS: 'class Program';
+METODO: (TYPE|VOID);
+TYPE: (INT|BOOLEAN);
+
 WS_ : (' ' | '\n' | '\t' ) -> skip;
 
 SL_COMMENT : '//' (~'\n')* '\n' -> skip;
@@ -56,3 +60,4 @@ fragment
 ESC :  '\\' ('n'|'t'|'\''|'"');
 fragment
 NUM : ('0'..'9');
+
