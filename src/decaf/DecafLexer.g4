@@ -35,7 +35,8 @@ VOID: 'void';
 BREAK: 'break';
 CONTINUE: 'continue'; 
 NUMBER: (NUM)+;
-
+MENOS:'-';
+EXCLA:'!';
 TK_CLASS: 'class Program';
 METODO: (TYPE|VOID);
 TYPE: (INT|BOOLEAN);
@@ -54,11 +55,13 @@ HEX_CEPTION: '0x';
 
 ID  :  ('a'..'z' | 'A'..'Z' | '_' |NUM)+;
 
-OP : ('-'|'+'|'*'|'<='|'<'|'!='|'&&'|'>='|'!='|'=='|'||'|'>'|'=');
+OP : (ARITIMETICOS|IGUALDADE|RELACAO|CONDICAO|ATRIBUICAO);
 
-S_IGUALDADE: ('=='|'!=');
-
-
+ATRIBUICAO: '=';
+ARITIMETICOS:('+'|'-'|'*'|'/'|'%');
+IGUALDADE: '=='|'!=';
+CONDICAO: '&&'|'||';
+RELACAO: '<'|'>'|'<='|'>=';
 fragment
 ESC :  '\\' ('n'|'t'|'\''|'"');
 fragment
