@@ -13,53 +13,64 @@ options
 program: TK_CLASS LCURLY field_decl* method_decl* RCURLY;
 
 
-field: (type id|type id LCOLCHETE int_literal RCOLCHETE)PTVIRGULA;
+field: type id|type id LCOLCHETE int_literal RCOLCHETE;
+
 
 field_decl: field (VIRGULA field)* PTVIRGULA;
 
-method_decl: type
-	|VOID id LPARENTS (type id)* RPARENTS block;
+decl: VIRGULA type id;
+method_decl: (type|VOID) id LPARENTS (type id)? (type id decl)* RPARENTS block;
 
 block: LCURLY var_decl* statement* RCURLY;
 
-var_decl: type id+ PTVIRGULA;
+var: type id;
+var_decl: var (VIRGULA var)* PTVIRGULA;
 
-id: ID;
+type: INT|BOOLEAN;	
 
-type: INT|BOOLEAN;
-
-int_literal:(NUMBER|HEXA)+;
 
 statement: location assign_op expr PTVIRGULA
-	|method_call PTVIRGULA
-	|IF LPARENTS expr RPARENTS block (ELSE block) 
-	|FOR LPARENTS id ATRIBUICAO expr PTVIRGULA expr PTVIRGULA block RPARENTS 
-	|RETURN(expr)PTVIRGULA
+	| method_call PTVIRGULA
+	|IF LPARENTS expr RPARENTS block (ELSE block)*
+	|FOR id assign_op expr VIRGULA expr block
+	| RETURN (expr)* PTVIRGULA
 	|BREAK PTVIRGULA;
 
-location: id
-	| id LCOLCHETE expr RCOLCHETE;
+assign_op: ATRIBUICAO|DECREMENTO|INCREMENTO;
 
-expr: location
-	|method_call
-	|literal
-	|expr bin_op expr
-	|MENOS expr
-	|EXCLA expr
-	|LPARENTS expr RPARENTS;
-
-method_call: method_name(expr)*
-	|CALLOUT(string_literal (VIRGULA callout_arg));
+call: VIRGULA expr;
+method_call: method_name LPARENTS expr* (expr call)* RPARENTS
+	|CALLOUT LPARENTS string_literal (VIRGULA callout_arg)* RPARENTS;
 
 method_name: id;
 
-callout_arg: expr
-	|callout;
-callout: string_literal (VIRGULA callout)*;
+location: id|id LCOLCHETE expr RCOLCHETE;
+
+expr: location 
+	|method_call 
+	|literal 
+	|MENOS expr 
+	|expr (bin_op|MENOS) expr
+	|FOR expr (VIRGULA id)*
+	|LPARENTS expr RPARENTS;
+
+callout_arg: expr|string_literal;
+
+bin_op: ARITH
+	|RELACAO
+	|IGUALDADE
+	|CONDICAO;
+
 
 literal:int_literal
 	|char_literal
 	|bool_literal;
+
+id: ID;
+
+int_literal:NUMBER|HEXA;
+
+callout: string_literal (VIRGULA callout)*;
 
 char_literal: CHAR;
 
@@ -67,14 +78,6 @@ string_literal: STRING;
 
 bool_literal:TRUE|FALSE;
 
-bin_op: arith_op
-	|rel_op
-	|eq_op
-	|cond_op;
 
-eq_op:IGUALDADE;
-arith_op: ARITIMETICOS;
-cond_op: CONDICAO;
-rel_op: RELACAO;
-assign_op: OP;
+
 

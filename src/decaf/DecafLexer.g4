@@ -38,8 +38,7 @@ NUMBER: (NUM)+;
 MENOS:'-';
 EXCLA:'!';
 TK_CLASS: 'class Program';
-METODO: (TYPE|VOID);
-TYPE: (INT|BOOLEAN);
+
 
 WS_ : (' ' | '\n' | '\t' ) -> skip;
 
@@ -49,21 +48,22 @@ CHAR : '\'' (ESC|'\\\\'|'a'..'z' | 'A'..'Z'| '0'..'9') '\'';
 
 HEXA : '0x'[a-fA-F0-9]+;
 
-STRING : '"' (ESC|ID|NUM|' '|','|'?'|'.'|':'|'!'|'\\'|',' ~('"'))* '"';
+STRING : '"' (ESC|IDENTIFICADOR|NUM|' '|','|'?'|'.'|':'|'!'|'\\'|',' ~('"'))* '"';
 
 HEX_CEPTION: '0x';
 
-ID  :  ('a'..'z' | 'A'..'Z' | '_' |NUM)+;
-
-OP : (ARITIMETICOS|IGUALDADE|RELACAO|CONDICAO|ATRIBUICAO);
+ID  :  IDENTIFICADOR;
 
 ATRIBUICAO: '=';
-ARITIMETICOS:('+'|'-'|'*'|'/'|'%');
+INCREMENTO:'+=';
+DECREMENTO:'-=';
+ARITH: '+'|'-'|'*'|'/'|'%';
 IGUALDADE: '=='|'!=';
 CONDICAO: '&&'|'||';
 RELACAO: '<'|'>'|'<='|'>=';
 fragment
-ESC :  '\\' ('n'|'t'|'\''|'"');
+ESC :  ('%c'|'%d'|'\n'|'t'|'\''|'"');
 fragment
 NUM : ('0'..'9');
-
+fragment
+IDENTIFICADOR: ('a'..'z' | 'A'..'Z' | '_' |NUM)+;
