@@ -40,6 +40,9 @@ class Main {
 
 		        			switch (token.getType())
 		        			{
+						case DecafLexer.CHAR:
+							type = " CHARLITERAL";
+							break;
 		        			case DecafLexer.VIRGULA:
 							type = " ";
 							break;
@@ -104,14 +107,11 @@ class Main {
 						case DecafLexer.ID:
 		        				type = " IDENTIFIER";
 		        				break;
-						case DecafLexer.CHAR:
-							type = " CHARLITERAL";
+						case DecafLexer.NUMBER: 
+							type = "INTLITERAL";
 							break;
 						case DecafLexer.HEXA:
 							type = " HEXALIT";
-							break;
-						case DecafLexer.NUMBER: 
-							type = "INTLITERAL";
 							break;
 						case DecafLexer.STRING:
 							type = "STRINGLITERAL";

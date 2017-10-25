@@ -48,7 +48,7 @@ CHAR : '\'' (ESC|'\\\\'|'a'..'z' | 'A'..'Z'| '0'..'9') '\'';
 
 HEXA : '0x'[a-fA-F0-9]+;
 
-STRING : '"' (ESC|IDENTIFICADOR|NUM|' '|','|'?'|'.'|':'|'!'|'\\'|',' ~('"'))* '"';
+STRING : '"' (ESC|IDENTIFICADOR|NUM|' '|','|'?'|'.'|'%'|':'|'!'|'\\'|',' ~('"'))* '"';
 
 HEX_CEPTION: '0x';
 
@@ -62,8 +62,8 @@ IGUALDADE: '=='|'!=';
 CONDICAO: '&&'|'||';
 RELACAO: '<'|'>'|'<='|'>=';
 fragment
-ESC :  ('%c'|'%d'|'\n'|'t'|'\''|'"');
+ESC :  '\\' ('n'|'t'|'\''|'"');
 fragment
 NUM : ('0'..'9');
 fragment
-IDENTIFICADOR: ('a'..'z' | 'A'..'Z' | '_' |NUM)+;
+IDENTIFICADOR: ('a'..'z' | 'A'..'Z' | '_' |NUM)+;/
